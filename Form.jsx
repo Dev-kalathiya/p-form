@@ -3,6 +3,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 
+
 const FormData = () => {
   const schema = yup.object().shape({
     firstName: yup.string().required("First name is required"),
@@ -32,15 +33,15 @@ const FormData = () => {
         terms: false,
       }}
       validationSchema={schema}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         console.log(values);
         resetForm();
       }}
     >
       {({ errors, touched }) => (
         <Form
-          className="p-5 border rounded"
-          style={{ backgroundColor: "#C0C0C0", width: "150%" }}
+          className="p-5 m-3 border rounded"
+          style={{ backgroundColor: "#C0C0C0", width: "100%" }}
         >
           <div className="mb-3">
             <label className="form-label">First Name</label>
@@ -48,9 +49,8 @@ const FormData = () => {
               type="text"
               id="firstName"
               name="firstName"
-              className={`form-control ${
-                touched.firstName && errors.firstName ? "is-invalid" : ""
-              }`}
+              className={`form-control ${touched.firstName && errors.firstName ? "is-invalid shake" : ""
+                }`}
             />
             <div className="invalid-feedback">{errors.firstName}</div>
           </div>
@@ -60,9 +60,8 @@ const FormData = () => {
               type="text"
               id="lastName"
               name="lastName"
-              className={`form-control ${
-                touched.lastName && errors.lastName ? "is-invalid" : ""
-              }`}
+              className={`form-control ${touched.lastName && errors.lastName ? "is-invalid shake" : ""
+                }`}
             />
             <div className="invalid-feedback">{errors.lastName}</div>
           </div>
@@ -72,9 +71,8 @@ const FormData = () => {
               type="text"
               id="username"
               name="username"
-              className={`form-control ${
-                touched.username && errors.username ? "is-invalid" : ""
-              }`}
+              className={`form-control ${touched.username && errors.username ? "is-invalid shake" : ""
+                }`}
             />
             <div className="invalid-feedback">{errors.username}</div>
           </div>
@@ -84,9 +82,8 @@ const FormData = () => {
               type="email"
               id="email"
               name="email"
-              className={`form-control ${
-                touched.email && errors.email ? "is-invalid" : ""
-              }`}
+              className={`form-control ${touched.email && errors.email ? "is-invalid shake" : ""
+                }`}
             />
             <div className="invalid-feedback">{errors.email}</div>
             <div className="form-text text-muted">
@@ -99,9 +96,8 @@ const FormData = () => {
               type="password"
               id="password"
               name="password"
-              className={`form-control ${
-                touched.password && errors.password ? "is-invalid" : ""
-              }`}
+              className={`form-control ${touched.password && errors.password ? "is-invalid shake" : ""
+                }`}
             />
             <div className="invalid-feedback">{errors.password}</div>
           </div>
@@ -110,9 +106,8 @@ const FormData = () => {
               type="checkbox"
               id="terms"
               name="terms"
-              className={`form-check-input ${
-                touched.terms && errors.terms ? "is-invalid" : ""
-              }`}
+              className={`form-check-input ${touched.terms && errors.terms ? "is-invalid shake" : ""
+                }`}
             />
             <label className="form-check-label">
               Agree to terms and conditions
