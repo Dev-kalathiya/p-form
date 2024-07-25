@@ -3,14 +3,11 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 
-
 const FormData = () => {
   const schema = yup.object().shape({
     firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name is required"),
     username: yup.string().required("Username is required"),
-    city: yup.string().required("City is required"),
-    state: yup.string().required("State is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
     password: yup
       .string()
@@ -34,11 +31,12 @@ const FormData = () => {
       }}
       validationSchema={schema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
-        resetForm();
+        alert("signup successful")
+        console.log(values); 
+        resetForm(); 
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, isValid }) => (
         <Form
           className="p-5 m-3 border rounded"
           style={{ backgroundColor: "#C0C0C0", width: "100%" }}
@@ -49,8 +47,7 @@ const FormData = () => {
               type="text"
               id="firstName"
               name="firstName"
-              className={`form-control ${touched.firstName && errors.firstName ? "is-invalid shake" : ""
-                }`}
+              className={`form-control ${touched.firstName && errors.firstName ? "is-invalid shake" : ""}`}
             />
             <div className="invalid-feedback">{errors.firstName}</div>
           </div>
@@ -60,8 +57,7 @@ const FormData = () => {
               type="text"
               id="lastName"
               name="lastName"
-              className={`form-control ${touched.lastName && errors.lastName ? "is-invalid shake" : ""
-                }`}
+              className={`form-control ${touched.lastName && errors.lastName ? "is-invalid shake" : ""}`}
             />
             <div className="invalid-feedback">{errors.lastName}</div>
           </div>
@@ -71,8 +67,7 @@ const FormData = () => {
               type="text"
               id="username"
               name="username"
-              className={`form-control ${touched.username && errors.username ? "is-invalid shake" : ""
-                }`}
+              className={`form-control ${touched.username && errors.username ? "is-invalid shake" : ""}`}
             />
             <div className="invalid-feedback">{errors.username}</div>
           </div>
@@ -82,8 +77,7 @@ const FormData = () => {
               type="email"
               id="email"
               name="email"
-              className={`form-control ${touched.email && errors.email ? "is-invalid shake" : ""
-                }`}
+              className={`form-control ${touched.email && errors.email ? "is-invalid shake" : ""}`}
             />
             <div className="invalid-feedback">{errors.email}</div>
             <div className="form-text text-muted">
@@ -96,8 +90,7 @@ const FormData = () => {
               type="password"
               id="password"
               name="password"
-              className={`form-control ${touched.password && errors.password ? "is-invalid shake" : ""
-                }`}
+              className={`form-control ${touched.password && errors.password ? "is-invalid shake" : ""}`}
             />
             <div className="invalid-feedback">{errors.password}</div>
           </div>
@@ -106,15 +99,14 @@ const FormData = () => {
               type="checkbox"
               id="terms"
               name="terms"
-              className={`form-check-input ${touched.terms && errors.terms ? "is-invalid shake" : ""
-                }`}
+              className={`form-check-input ${touched.terms && errors.terms ? "is-invalid shake" : ""}`}
             />
             <label className="form-check-label">
               Agree to terms and conditions
             </label>
             <div className="invalid-feedback">{errors.terms}</div>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" disabled={!isValid}>
             Submit
           </button>
         </Form>
